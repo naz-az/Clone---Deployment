@@ -127,7 +127,7 @@ def test_disconnect():
         
 @app.route('/')
 def home():
-    return render_template('index.html')
+    return render_template('home.html')
 
 @app.route('/start', methods=['POST'])
 def start():

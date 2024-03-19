@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- 
+    - primary meta tags
+  -->
+    <title>Digital Twin</title>
+    <meta name="title" content="Digital Twin">
+    <meta name="description" content="Digital Twin - SE270">
+
+    <!-- 
+    - favicon
+  -->
+    <link rel="shortcut icon" href="./favicon.svg" type="image/svg+xml">
+
+    <!-- 
+    - google font link
+  -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- 
+    - custom css link
+  -->
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+
+
+</head>
+
+<body id="top">
+
+
+
+
+    <main>
+        <article>
+
+            <div style="margin-top: 50px;">
+            </div>
+
+
+
+            <section class="tags" aria-labelledby="tag-label">
+                <div class="container">
+
+                    <h2 class="headline headline-2 section-title" id="tag-label">
+                        <span class="span">Digital Twin</span>
+                    </h2>
+
+                    <p class="section-text">
+                        SE-270
+                    </p>
+
+                    <ul class="grid-list">
+
+                        <li>
+                            <button id="startButton" class="card tag-btn">
+                                <img src="{{ url_for('static', filename='images/tag1.png') }}" width="32" height="32" loading="lazy" alt="Travel">
+
+                                <p class="btn-text">Start</p>
+                            </button>
+                        </li>
+
+                        <li>
+                            <button id="stopButton" class="card tag-btn">
+                                <img src="{{ url_for('static', filename='images/tag2.png') }}" width="32" height="32" loading="lazy" alt="Travel">
+
+                                <p class="btn-text">Stop</p>
+                            </button>
+                        </li>
+
+                        <li>
+                            <button id="autoButton" class="card tag-btn">
+                                <img src="{{ url_for('static', filename='images/tag3.png') }}" width="32" height="32" loading="lazy" alt="Travel">
+
+
+                                <p class="btn-text">Auto</p>
+                            </button>
+                        </li>
+
+                        <li>
+                            <button id="manualButton" class="card tag-btn">
+                                <img src="{{ url_for('static', filename='images/tag4.png') }}" width="32" height="32" loading="lazy" alt="Travel">
+
+                                <p class="btn-text">Manual</p>
+                            </button>
+                        </li>
+
+                        <li>
+                            <button id="setPointButton" class="card tag-btn">
+                                <img src="{{ url_for('static', filename='images/tag5.png') }}" width="32" height="32" loading="lazy" alt="Travel">
+
+                                <p class="btn-text">Set Point</p>
+                            </button>
+                        </li>
+
+                        <li>
+                            <button id="pidControllerButton" class="card tag-btn">
+                                <img src="{{ url_for('static', filename='images/tag6.png') }}" width="32" height="32" loading="lazy" alt="Travel">
+
+                                <p class="btn-text">PID Controller</p>
+                            </button>
+                        </li>
+
+                        <li>
+                            <button id="mvValueButton" class="card tag-btn">
+                                <img src="{{ url_for('static', filename='images/tag7.png') }}" width="32" height="32" loading="lazy" alt="Travel">
+
+                                <p class="btn-text">MV Value</p>
+                            </button>
+                        </li>
+
+                        <li>
+                            <button id="transferFunctionButton" class="card tag-btn">
+                                <img src="{{ url_for('static', filename='images/tag8.png') }}" width="32" height="32" loading="lazy" alt="Travel">
+
+                                <p class="btn-text">Transfer Function</p>
+                            </button>
+                        </li>
+
+
+                    </ul>
+
+                </div>
+            </section>
+
+            <div id="pidModal" class="modal">
+                <div class="modal-content">
+                  <span class="close">&times;</span>
+                  <h2>PID Controller Settings</h2>
+                  <label for="kpValue">Kp Value:</label>
+                  <input type="text" id="kpValue" name="kpValue"><br><br>
+                  <label for="kiValue">Ki Value:</label>
+                  <input type="text" id="kiValue" name="kiValue"><br><br>
+                  <label for="kdValue">Kd Value:</label>
+                  <input type="text" id="kdValue" name="kdValue"><br><br>
+                  <button id="savePid">Save</button>
+                </div>
+              </div>
+              
+              <div id="tfModal" class="modal">
+                <div class="modal-content">
+                  <span class="close">&times;</span>
+                  <h2>Transfer Function Settings</h2>
+                  <label for="numerator">Numerator coefficients:</label>
+                  <input type="text" id="numerator" name="numerator"><br><br>
+                  <label for="denominator">Denominator coefficients:</label>
+                  <input type="text" id="denominator" name="denominator"><br><br>
+                  <button id="saveTf">Save</button>
+                </div>
+              </div>
+        
+              <div id="setPointModal" class="modal">
+                <div class="modal-content">
+                  <span class="close">&times;</span>
+                  <h2>Set Point Settings</h2>
+                  <label for="setPointValue">Set Point Value:</label>
+                  <input type="text" id="setPointValue" name="setPointValue"><br><br>
+                  <button id="saveSetPoint">Save</button>
+                </div>
+              </div>
+        
+              <div id="mvModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>MV Value Settings</h2>
+                <label for="mvValue">Enter the MV value:</label>
+                <input type="text" id="mvValue" name="mvValue"><br><br>
+                <button id="saveMv">Save</button>
+            </div>
+        </div>
+        
+        
+            <div style="margin-top: 100px; margin-bottom: 100px;">
+                <canvas id="myChart"></canvas>
+            </div>
+
+
+
+
+
+
+            <!-- 
+    - custom js link
+  -->
+
+            <script src="https://cdn.socket.io/4.0.0/socket.io.min.js"></script>
+
+            <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+            <!-- 
+    - ionicon link
+  -->
+            <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+            <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+</body>
+
+</html>
