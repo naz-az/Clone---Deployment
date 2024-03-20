@@ -235,7 +235,7 @@ def handle_command():
     print(f"Received command: {command}")
     print(f"Simulation running: {simulation_running}")
     print(f"Current simulation data length: {len(data)}")
-    print(f"Simulation data: {data}")
+    # print(f"Simulation data: {data}")
 
     if command == 'start' and not simulation_running:
         simulation_running = True
